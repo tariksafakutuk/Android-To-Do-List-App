@@ -3,4 +3,5 @@
     <dimen name="splash_screen_header">28sp</dimen>
     <dimen name="splash_screen_explanation">16sp</dimen>
     <dimen name="splash_screen_button">22sp</dimen>
+    <dimen name="home_page_header">20sp</dimen>
 </resources>
