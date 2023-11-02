@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">To Do List App</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="splash_screen_header">Task Management &amp; To Do List</string>
+    <string name="splash_screen_explanation">Add new tasks and organize your tasks</string>
+    <string name="splash_screen_button">Let\'s Start</string>
 </resources>
