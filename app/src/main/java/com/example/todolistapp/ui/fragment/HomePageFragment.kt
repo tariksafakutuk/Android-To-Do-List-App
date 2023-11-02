@@ -5,56 +5,42 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolistapp.R
+import com.example.todolistapp.data.entity.Task
+import com.example.todolistapp.databinding.FragmentHomePageBinding
+import com.example.todolistapp.ui.adapter.TaskAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomePageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomePageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentHomePageBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_page, container, false)
+    ): View {
+        binding = FragmentHomePageBinding.inflate(inflater, container, false)
+        setStatusBarColor()
+
+        binding.rvTaskCard.layoutManager = LinearLayoutManager(requireContext())
+
+        val taskList = ArrayList<Task>()
+        val t1 = Task(1, "Walk with dog", "02/11/2023", "10:00", true)
+        val t2 = Task(2, "Training in the Gym", "04/11/2023", "11:30", false)
+        val t3 = Task(3, "Buy apple and milk", "04/11/2023", "14:00", false)
+        taskList.add(t1)
+        taskList.add(t2)
+        taskList.add(t3)
+
+        val adapter = TaskAdapter(requireContext(), taskList)
+        binding.rvTaskCard.adapter = adapter
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomePageFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomePageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun setStatusBarColor() {
+        val background = resources.getDrawable(R.drawable.bg_layout)
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), android.R.color.transparent)
+        requireActivity().window.setBackgroundDrawable(background)
     }
 }
