@@ -5,10 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistapp.R
 import com.example.todolistapp.data.entity.Task
 import com.example.todolistapp.databinding.TaskCardBinding
+import com.example.todolistapp.ui.fragment.HomePageFragmentDirections
+import com.example.todolistapp.utils.changePage
 
 class TaskAdapter(private var mContext: Context, private var taskList: List<Task>) :
     RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
@@ -57,6 +60,11 @@ class TaskAdapter(private var mContext: Context, private var taskList: List<Task
 
         binding.cbTask.setOnClickListener {
             Log.e("Message", "Task Activated")
+        }
+
+        binding.cardViewTask.setOnClickListener {
+            val direction = HomePageFragmentDirections.actionHomePageFragmentToTaskDetailFragment(task = task)
+            Navigation.changePage(it, direction)
         }
     }
 
