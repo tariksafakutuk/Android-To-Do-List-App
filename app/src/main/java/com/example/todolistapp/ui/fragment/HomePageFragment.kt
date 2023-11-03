@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolistapp.R
 import com.example.todolistapp.data.entity.Task
 import com.example.todolistapp.databinding.FragmentHomePageBinding
 import com.example.todolistapp.ui.adapter.TaskAdapter
+import com.example.todolistapp.utils.changePage
 
 class HomePageFragment : Fragment() {
     private lateinit var binding: FragmentHomePageBinding
@@ -49,6 +51,10 @@ class HomePageFragment : Fragment() {
         val adapter = TaskAdapter(requireContext(), taskList)
         binding.rvTaskCard.adapter = adapter
 
+        binding.fab.setOnClickListener {
+            clickFab(it)
+        }
+
         return binding.root
     }
 
@@ -62,5 +68,9 @@ class HomePageFragment : Fragment() {
         if (queryWord != null) {
             Log.e("Message", queryWord)
         }
+    }
+
+    fun clickFab(view: View) {
+        Navigation.changePage(view, R.id.action_homePageFragment_to_addTaskFragment)
     }
 }
