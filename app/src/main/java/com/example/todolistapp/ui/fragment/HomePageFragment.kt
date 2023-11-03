@@ -1,10 +1,12 @@
 package com.example.todolistapp.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolistapp.R
@@ -21,6 +23,18 @@ class HomePageFragment : Fragment() {
     ): View {
         binding = FragmentHomePageBinding.inflate(inflater, container, false)
         setStatusBarColor()
+
+        binding.searchViewTask.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                search(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                search(newText)
+                return true
+            }
+        })
 
         binding.rvTaskCard.layoutManager = LinearLayoutManager(requireContext())
 
@@ -42,5 +56,11 @@ class HomePageFragment : Fragment() {
         val background = resources.getDrawable(R.drawable.bg_layout)
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), android.R.color.transparent)
         requireActivity().window.setBackgroundDrawable(background)
+    }
+
+    fun search(queryWord: String?) {
+        if (queryWord != null) {
+            Log.e("Message", queryWord)
+        }
     }
 }
