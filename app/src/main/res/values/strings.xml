@@ -9,4 +9,5 @@
     <string name="date_text">Date</string>
     <string name="time_text">Time</string>
     <string name="add_task_button">Create Task</string>
+    <string name="update_task_button">Update Task</string>
 </resources>
