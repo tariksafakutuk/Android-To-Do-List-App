@@ -35,5 +35,9 @@
         android:id="@+id/taskDetailFragment"
         android:name="com.example.todolistapp.ui.fragment.TaskDetailFragment"
         android:label="fragment_task_detail"
-        tools:layout="@layout/fragment_task_detail" />
+        tools:layout="@layout/fragment_task_detail" >
+        <argument
+            android:name="task"
+            app:argType="com.example.todolistapp.data.entity.Task" />
+    </fragment>
 </navigation>
