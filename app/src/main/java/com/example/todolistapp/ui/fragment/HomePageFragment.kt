@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolistapp.R
@@ -23,7 +24,9 @@ class HomePageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomePageBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_page, container, false)
+        binding.homePageFragment = this
+
         setStatusBarColor()
 
         binding.searchViewTask.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -38,8 +41,6 @@ class HomePageFragment : Fragment() {
             }
         })
 
-        binding.rvTaskCard.layoutManager = LinearLayoutManager(requireContext())
-
         val taskList = ArrayList<Task>()
         val t1 = Task(1, "Walk with dog", "02/11/2023", "10:00", true)
         val t2 = Task(2, "Training in the Gym", "04/11/2023", "11:30", false)
@@ -49,11 +50,7 @@ class HomePageFragment : Fragment() {
         taskList.add(t3)
 
         val adapter = TaskAdapter(requireContext(), taskList)
-        binding.rvTaskCard.adapter = adapter
-
-        binding.fab.setOnClickListener {
-            clickFab(it)
-        }
+        binding.taskAdapter = adapter
 
         return binding.root
     }
