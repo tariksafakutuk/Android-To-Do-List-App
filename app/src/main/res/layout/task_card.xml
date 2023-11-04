@@ -1,113 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_task"
+    <data>
+
+        <variable
+            name="taskObject"
+            type="com.example.todolistapp.data.entity.Task" />
+
+        <variable
+            name="cardViewBackgroundColor"
+            type="int" />
+
+        <variable
+            name="checkboxChecked"
+            type="boolean" />
+
+        <variable
+            name="textViewColor"
+            type="int" />
+
+        <variable
+            name="imageViewColor"
+            type="int" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardElevation="0dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewTask"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_task_card">
+            android:layout_margin="5dp"
+            app:cardBackgroundColor="@{cardViewBackgroundColor}"
+            app:cardElevation="0dp">
 
-            <CheckBox
-                android:id="@+id/cb_task"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                app:buttonIcon="@drawable/bg_checkbox"
-                app:buttonIconTint="@color/checkbox_color"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_task_card">
 
-            <ImageView
-                android:id="@+id/iv_task_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toEndOf="@+id/cb_task"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/vc_text_title"
-                app:tint="@color/bg_button" />
+                <CheckBox
+                    android:id="@+id/cbTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:checked="@{checkboxChecked}"
+                    app:buttonIcon="@drawable/bg_checkbox"
+                    app:buttonIconTint="@color/checkbox_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_task_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_task_title"
-                app:layout_constraintStart_toEndOf="@+id/iv_task_title"
-                app:layout_constraintTop_toTopOf="@+id/iv_task_title"
-                tools:text="Walk with dog" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivTaskTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:tint="@{imageViewColor}"
+                    app:layout_constraintStart_toEndOf="@+id/cbTask"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/vc_text_title" />
 
-            <ImageView
-                android:id="@+id/iv_task_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toEndOf="@+id/cb_task"
-                app:layout_constraintTop_toBottomOf="@+id/tv_task_title"
-                app:srcCompat="@drawable/vc_date_range"
-                app:tint="@color/bg_button" />
+                <TextView
+                    android:id="@+id/tvTaskTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{taskObject.taskTitle}"
+                    android:textColor="@{textViewColor}"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivTaskTitle"
+                    app:layout_constraintStart_toEndOf="@+id/ivTaskTitle"
+                    app:layout_constraintTop_toTopOf="@+id/ivTaskTitle"
+                    tools:text="Walk with dog" />
 
-            <TextView
-                android:id="@+id/tv_task_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_task_date"
-                app:layout_constraintStart_toEndOf="@+id/iv_task_date"
-                app:layout_constraintTop_toTopOf="@+id/iv_task_date"
-                tools:text="02/11/ 2023" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivTaskDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:tint="@{imageViewColor}"
+                    app:layout_constraintStart_toEndOf="@+id/cbTask"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTaskTitle"
+                    app:srcCompat="@drawable/vc_date_range" />
 
-            <ImageView
-                android:id="@+id/iv_task_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cb_task"
-                app:layout_constraintTop_toBottomOf="@+id/iv_task_date"
-                app:srcCompat="@drawable/vc_time_range"
-                app:tint="@color/bg_button" />
+                <TextView
+                    android:id="@+id/tvTaskDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{taskObject.taskDate}"
+                    android:textColor="@{textViewColor}"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivTaskDate"
+                    app:layout_constraintStart_toEndOf="@+id/ivTaskDate"
+                    app:layout_constraintTop_toTopOf="@+id/ivTaskDate"
+                    tools:text="02/11/ 2023" />
 
-            <TextView
-                android:id="@+id/tv_task_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_task_time"
-                app:layout_constraintStart_toEndOf="@+id/iv_task_time"
-                app:layout_constraintTop_toTopOf="@+id/iv_task_time"
-                tools:text="22:30" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivTaskTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:tint="@{imageViewColor}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cbTask"
+                    app:layout_constraintTop_toBottomOf="@+id/ivTaskDate"
+                    app:srcCompat="@drawable/vc_time_range" />
 
-            <ImageView
-                android:id="@+id/iv_right_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/cb_task"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/cb_task"
-                app:srcCompat="@drawable/vc_arrow_right"
-                app:tint="@color/bg_button" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+                <TextView
+                    android:id="@+id/tvTaskTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{taskObject.taskTime}"
+                    android:textColor="@{textViewColor}"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivTaskTime"
+                    app:layout_constraintStart_toEndOf="@+id/ivTaskTime"
+                    app:layout_constraintTop_toTopOf="@+id/ivTaskTime"
+                    tools:text="22:30" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivRightButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:tint="@{imageViewColor}"
+                    app:layout_constraintBottom_toBottomOf="@+id/cbTask"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/cbTask"
+                    app:srcCompat="@drawable/vc_arrow_right" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</layout>

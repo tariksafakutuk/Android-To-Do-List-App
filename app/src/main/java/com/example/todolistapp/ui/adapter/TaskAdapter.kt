@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistapp.R
@@ -20,7 +21,7 @@ class TaskAdapter(private var mContext: Context, private var taskList: List<Task
         RecyclerView.ViewHolder(design.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskHolder {
-        val binding = TaskCardBinding.inflate(LayoutInflater.from(mContext), parent, false)
+        val binding: TaskCardBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.task_card, parent, false)
         return TaskHolder(binding)
     }
 
@@ -28,34 +29,22 @@ class TaskAdapter(private var mContext: Context, private var taskList: List<Task
         val task = taskList.get(position)
         val binding = holder.design
 
-        binding.tvTaskTitle.text = task.taskTitle
-        binding.tvTaskDate.text = task.taskDate
-        binding.tvTaskTime.text = task.taskTime
+        binding.taskObject = task
 
         if (task.taskActivated) {
-            binding.tvTaskTitle.setTextColor(ContextCompat.getColor(mContext, R.color.white))
-            binding.tvTaskDate.setTextColor(ContextCompat.getColor(mContext, R.color.white))
-            binding.tvTaskTime.setTextColor(ContextCompat.getColor(mContext, R.color.white))
+            binding.cardViewBackgroundColor = ContextCompat.getColor(mContext, R.color.bg_button)
 
-            binding.cardViewTask.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.bg_button))
-            binding.ivTaskTitle.setColorFilter(ContextCompat.getColor(mContext, R.color.white))
-            binding.ivTaskDate.setColorFilter(ContextCompat.getColor(mContext, R.color.white))
-            binding.ivTaskTime.setColorFilter(ContextCompat.getColor(mContext, R.color.white))
-            binding.ivRightButton.setColorFilter(ContextCompat.getColor(mContext, R.color.white))
+            binding.checkboxChecked = true
 
-            binding.cbTask.isChecked = true
+            binding.textViewColor = ContextCompat.getColor(mContext, R.color.white)
+            binding.imageViewColor = ContextCompat.getColor(mContext, R.color.white)
         } else {
-            binding.tvTaskTitle.setTextColor(ContextCompat.getColor(mContext, R.color.black))
-            binding.tvTaskDate.setTextColor(ContextCompat.getColor(mContext, R.color.black))
-            binding.tvTaskTime.setTextColor(ContextCompat.getColor(mContext, R.color.black))
+            binding.cardViewBackgroundColor = ContextCompat.getColor(mContext, android.R.color.transparent)
 
-            binding.cardViewTask.setBackgroundResource(R.drawable.bg_layout)
-            binding.ivTaskTitle.setColorFilter(ContextCompat.getColor(mContext, R.color.bg_button))
-            binding.ivTaskDate.setColorFilter(ContextCompat.getColor(mContext, R.color.bg_button))
-            binding.ivTaskTime.setColorFilter(ContextCompat.getColor(mContext, R.color.bg_button))
-            binding.ivRightButton.setColorFilter(ContextCompat.getColor(mContext, R.color.bg_button))
+            binding.checkboxChecked = false
 
-            binding.cbTask.isChecked = false
+            binding.textViewColor = ContextCompat.getColor(mContext, R.color.black)
+            binding.imageViewColor = ContextCompat.getColor(mContext, R.color.bg_button)
         }
 
         binding.cbTask.setOnClickListener {
