@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.example.todolistapp.R
 import com.example.todolistapp.databinding.FragmentSplashScreenBinding
@@ -17,11 +18,8 @@ class SplashScreenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSplashScreenBinding.inflate(inflater, container, false)
-
-        binding.buttonSplashScreen.setOnClickListener {
-            clickButton(it)
-        }
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash_screen, container, false)
+        binding.splashScreenFragment = this
 
         return binding.root
     }
