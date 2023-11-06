@@ -12,7 +12,9 @@ import androidx.navigation.fragment.navArgs
 import com.example.todolistapp.R
 import com.example.todolistapp.databinding.FragmentTaskDetailBinding
 import com.example.todolistapp.ui.viewmodel.TaskDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TaskDetailFragment : Fragment() {
     private lateinit var binding: FragmentTaskDetailBinding
     private lateinit var viewModel: TaskDetailViewModel

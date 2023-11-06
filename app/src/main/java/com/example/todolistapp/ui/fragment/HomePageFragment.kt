@@ -15,7 +15,9 @@ import com.example.todolistapp.databinding.FragmentHomePageBinding
 import com.example.todolistapp.ui.adapter.TaskAdapter
 import com.example.todolistapp.ui.viewmodel.HomePageViewModel
 import com.example.todolistapp.utils.changePage
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomePageFragment : Fragment() {
     private lateinit var binding: FragmentHomePageBinding
     private lateinit var viewModel: HomePageViewModel

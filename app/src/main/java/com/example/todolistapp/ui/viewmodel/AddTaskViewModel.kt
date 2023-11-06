@@ -7,14 +7,16 @@ import com.example.todolistapp.data.repo.TaskRepository
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
+import javax.inject.Inject
 
-class AddTaskViewModel : ViewModel() {
-    private val trepo = TaskRepository()
+@HiltViewModel
+class AddTaskViewModel @Inject constructor(var trepo: TaskRepository) : ViewModel() {
     val taskDate = MutableLiveData<String>()
     val taskTime = MutableLiveData<String>()
 

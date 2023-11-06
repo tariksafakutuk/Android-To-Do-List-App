@@ -10,7 +10,9 @@ import androidx.navigation.Navigation
 import com.example.todolistapp.R
 import com.example.todolistapp.databinding.FragmentSplashScreenBinding
 import com.example.todolistapp.utils.changePage
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashScreenFragment : Fragment() {
     private lateinit var binding: FragmentSplashScreenBinding
 

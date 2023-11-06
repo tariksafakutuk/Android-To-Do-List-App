@@ -3,9 +3,7 @@ package com.example.todolistapp.data.repo
 import com.example.todolistapp.data.datasource.TaskDataSource
 import com.example.todolistapp.data.entity.Task
 
-class TaskRepository {
-    private val tds = TaskDataSource()
-
+class TaskRepository(var tds: TaskDataSource) {
     suspend fun loadTasks(): List<Task> = tds.loadTasks()
 
     suspend fun search(queryWord: String): List<Task> = tds.search(queryWord)

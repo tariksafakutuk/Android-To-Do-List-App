@@ -11,7 +11,9 @@ import androidx.fragment.app.viewModels
 import com.example.todolistapp.R
 import com.example.todolistapp.databinding.FragmentAddTaskBinding
 import com.example.todolistapp.ui.viewmodel.AddTaskViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddTaskFragment : Fragment() {
     private lateinit var binding: FragmentAddTaskBinding
     private lateinit var viewModel: AddTaskViewModel

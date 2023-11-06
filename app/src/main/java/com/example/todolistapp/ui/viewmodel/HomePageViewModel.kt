@@ -4,12 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.todolistapp.data.entity.Task
 import com.example.todolistapp.data.repo.TaskRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomePageViewModel : ViewModel() {
-    private val trepo = TaskRepository()
+@HiltViewModel
+class HomePageViewModel @Inject constructor(var trepo: TaskRepository) : ViewModel() {
     val taskList = MutableLiveData<List<Task>>()
 
     init {
