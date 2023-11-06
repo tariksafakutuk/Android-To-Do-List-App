@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.todolistapp.R
 import com.example.todolistapp.databinding.FragmentTaskDetailBinding
+import com.example.todolistapp.ui.viewmodel.TaskDetailViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -19,6 +21,7 @@ import java.util.Locale
 
 class TaskDetailFragment : Fragment() {
     private lateinit var binding: FragmentTaskDetailBinding
+    private lateinit var viewModel: TaskDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +41,12 @@ class TaskDetailFragment : Fragment() {
         binding.taskTime = task.taskTime
 
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: TaskDetailViewModel by viewModels()
+        viewModel = tempViewModel
     }
 
     fun onBackPressed() {

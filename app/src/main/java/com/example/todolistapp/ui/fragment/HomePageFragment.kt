@@ -9,16 +9,19 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolistapp.R
 import com.example.todolistapp.data.entity.Task
 import com.example.todolistapp.databinding.FragmentHomePageBinding
 import com.example.todolistapp.ui.adapter.TaskAdapter
+import com.example.todolistapp.ui.viewmodel.HomePageViewModel
 import com.example.todolistapp.utils.changePage
 
 class HomePageFragment : Fragment() {
     private lateinit var binding: FragmentHomePageBinding
+    private lateinit var viewModel: HomePageViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +56,12 @@ class HomePageFragment : Fragment() {
         binding.taskAdapter = adapter
 
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: HomePageViewModel by viewModels()
+        viewModel = tempViewModel
     }
 
     private fun setStatusBarColor() {
