@@ -1,7 +1,6 @@
 package com.example.todolistapp.ui.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -12,9 +11,10 @@ import com.example.todolistapp.R
 import com.example.todolistapp.data.entity.Task
 import com.example.todolistapp.databinding.TaskCardBinding
 import com.example.todolistapp.ui.fragment.HomePageFragmentDirections
+import com.example.todolistapp.ui.viewmodel.HomePageViewModel
 import com.example.todolistapp.utils.changePage
 
-class TaskAdapter(private var mContext: Context, private var taskList: List<Task>) :
+class TaskAdapter(private var mContext: Context, private var taskList: List<Task>, private var viewModel: HomePageViewModel) :
     RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
 
     inner class TaskHolder(var design: TaskCardBinding) :
@@ -48,7 +48,7 @@ class TaskAdapter(private var mContext: Context, private var taskList: List<Task
         }
 
         binding.cbTask.setOnClickListener {
-            Log.e("Message", "Task Activated")
+            viewModel.setChecked(task.taskId)
         }
 
         binding.cardViewTask.setOnClickListener {

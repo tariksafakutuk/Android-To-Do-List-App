@@ -1,7 +1,6 @@
 package com.example.todolistapp.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +11,6 @@ import androidx.fragment.app.viewModels
 import com.example.todolistapp.R
 import com.example.todolistapp.databinding.FragmentAddTaskBinding
 import com.example.todolistapp.ui.viewmodel.AddTaskViewModel
-import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class AddTaskFragment : Fragment() {
     private lateinit var binding: FragmentAddTaskBinding
@@ -32,6 +26,14 @@ class AddTaskFragment : Fragment() {
         binding.addTaskFragment = this
         binding.addTaskToolbarTitle = "Add Task"
 
+        viewModel.taskDate.observe(viewLifecycleOwner) {
+            binding.taskDate = it
+        }
+
+        viewModel.taskTime.observe(viewLifecycleOwner) {
+            binding.taskTime = it
+        }
+
         return binding.root
     }
 
@@ -46,32 +48,14 @@ class AddTaskFragment : Fragment() {
     }
 
     fun selectDate() {
-        val datePicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Select Date")
-            .build()
-
-        datePicker.show(requireActivity().supportFragmentManager, "Date")
-
-        datePicker.addOnPositiveButtonClickListener {
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            binding.taskDate = dateFormat.format(it)
-        }
+        viewModel.selectDate(requireActivity().supportFragmentManager)
     }
 
     fun selectTime() {
-        val timePicker = MaterialTimePicker.Builder()
-            .setTitleText("Select Time")
-            .setTimeFormat(TimeFormat.CLOCK_24H)
-            .build()
-
-        timePicker.show(requireActivity().supportFragmentManager, "Time")
-
-        timePicker.addOnPositiveButtonClickListener {
-            binding.taskTime = "${timePicker.hour}:${timePicker.minute}"
-        }
+        viewModel.selectTime(requireActivity().supportFragmentManager)
     }
 
     fun createTask(taskTitle: String, taskDate: String, taskTime: String) {
-        Log.e("Message", "$taskTitle - $taskDate - $taskTime")
+        viewModel.createTask(taskTitle, taskDate, taskTime)
     }
 }
