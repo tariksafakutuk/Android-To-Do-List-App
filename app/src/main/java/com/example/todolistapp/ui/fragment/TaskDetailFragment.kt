@@ -67,5 +67,6 @@ class TaskDetailFragment : Fragment() {
 
     fun updateTask(taskId: Int, taskTitle: String, taskDate: String, taskTime: String) {
         viewModel.updateTask(taskId, taskTitle, taskDate, taskTime)
+        onBackPressed()
     }
 }

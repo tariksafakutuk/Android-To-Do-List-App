@@ -14,5 +14,5 @@ class TaskRepository(var tds: TaskDataSource) {
     suspend fun updateTask(taskId: Int, taskTitle: String, taskDate: String, taskTime: String) =
         tds.updateTask(taskId, taskTitle, taskDate, taskTime)
 
-    suspend fun setChecked(taskId: Int) = tds.setChecked(taskId)
+    suspend fun setChecked(task: Task) = tds.setChecked(task)
 }

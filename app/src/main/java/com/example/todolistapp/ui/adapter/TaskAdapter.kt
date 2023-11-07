@@ -31,14 +31,14 @@ class TaskAdapter(private var mContext: Context, private var taskList: List<Task
 
         binding.taskObject = task
 
-        if (task.taskActivated) {
+        if (task.taskActivated == 1) {
             binding.cardViewBackgroundColor = ContextCompat.getColor(mContext, R.color.bg_button)
 
             binding.checkboxChecked = true
 
             binding.textViewColor = ContextCompat.getColor(mContext, R.color.white)
             binding.imageViewColor = ContextCompat.getColor(mContext, R.color.white)
-        } else {
+        } else if (task.taskActivated == 0) {
             binding.cardViewBackgroundColor = ContextCompat.getColor(mContext, android.R.color.transparent)
 
             binding.checkboxChecked = false
@@ -48,7 +48,7 @@ class TaskAdapter(private var mContext: Context, private var taskList: List<Task
         }
 
         binding.cbTask.setOnClickListener {
-            viewModel.setChecked(task.taskId)
+            viewModel.setChecked(task)
         }
 
         binding.cardViewTask.setOnClickListener {

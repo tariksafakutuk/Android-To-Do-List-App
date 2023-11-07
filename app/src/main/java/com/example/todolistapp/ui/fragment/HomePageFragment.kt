@@ -38,9 +38,7 @@ class HomePageFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                if (newText != "") {
-                    viewModel.search(newText)
-                }
+                viewModel.search(newText)
                 return true
             }
         })

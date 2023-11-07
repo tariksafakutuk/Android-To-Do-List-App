@@ -59,5 +59,6 @@ class AddTaskFragment : Fragment() {
 
     fun createTask(taskTitle: String, taskDate: String, taskTime: String) {
         viewModel.createTask(taskTitle, taskDate, taskTime)
+        onBackPressed()
     }
 }

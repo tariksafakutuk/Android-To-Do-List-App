@@ -30,9 +30,9 @@ class HomePageViewModel @Inject constructor(var trepo: TaskRepository) : ViewMod
         }
     }
 
-    fun setChecked(taskId: Int) {
+    fun setChecked(task: Task) {
         CoroutineScope(Dispatchers.Main).launch {
-            trepo.setChecked(taskId)
+            trepo.setChecked(task)
             loadTasks()
         }
     }
